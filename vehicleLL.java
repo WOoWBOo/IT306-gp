@@ -7,7 +7,11 @@
  */
 package gp;
 
+import java.util.ArrayList;
+
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 
 public class vehicleLL {
 	private VNode head;
@@ -220,37 +224,23 @@ public class vehicleLL {
 	 */
 	public void displayVehicle() {
 		VNode curr = head;
-		String output = "";
+		ArrayList<String> output = new ArrayList<String>();
 		if(isEmpty()) JOptionPane.showMessageDialog(null, "Vehicle list is empty");
 		else{
-			if (getSize() < 50) {
 			if(!curr.hasNext()) {
 				JOptionPane.showMessageDialog(null, curr.getData()); 
 			}
-			
 			else{
 				while(curr != null){
-					output+= curr.getData() + "\n";
+					String s = curr.getData() + "\n";
+					output.add(s);
 					curr = curr.getNext();
 				}
-				JOptionPane.showMessageDialog(null, output); 
-			}
-			}
-			else if(getSize() >= 50 && getSize() <= 100) {
-				String spareOutput = "";
-				int counter = 0;
-				while(curr != null && counter < 50){
-					output+= curr.getData() + "\n";
-					curr = curr.getNext();
-					counter++;
-				}
-				JOptionPane.showMessageDialog(null, output); 
-				while(curr != null) {
-					spareOutput+= curr.getData() + "\n";
-					curr = curr.getNext();
-				}
-				JOptionPane.showMessageDialog(null, spareOutput); 
 			}
 		}
+		//Scroll****
+		JList<Object> outputList = new JList<Object>(output.toArray());
+		JScrollPane scrollPane = new JScrollPane(outputList);
+		JOptionPane.showMessageDialog(null, scrollPane); 
 	}
 }

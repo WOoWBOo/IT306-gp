@@ -17,7 +17,7 @@ public class Demo {
 		try {
 			menu.launch(ePath, vPath);
 		} catch (IOException e) {
-			System.out.println("Unable to launch system: File Error");
+			System.out.println("Failed to launch system");
 		}
 	}
 }
